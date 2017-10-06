@@ -11,7 +11,7 @@ docker build -t rawmind/web-monolith:<version> .
 
 ## Versions
 
-- `0.1-1` [(Dockerfile)](https://github.com/rawmind0/web-monolit/blob/0.1-1/Dockerfile)
+- `0.1-2` [(Dockerfile)](https://github.com/rawmind0/web-monolit/blob/0.1-2/Dockerfile)
 
 
 ## Usage
@@ -24,8 +24,9 @@ docker run rawmind/web-monolith:<version>
 
 See [rancher-example][rancher-example], rancher catalog package that runs web-monolith in a cattle environment.
 
-## Monolith modules
+## Monolith modules uri
 
+- / web-monolith app
 - /payments/ Payments module
 - /inventory/ Inventory module
 - /shipping/ Shipping module
