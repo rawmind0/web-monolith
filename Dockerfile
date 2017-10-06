@@ -2,26 +2,29 @@ FROM rawmind/alpine-base:3.6-7
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 
-ENV WEB_HOME=/opt/web-monolith \
+ENV SERVICE_HOME=/opt/web-monolith \
+    SERVICE_NAME=web-monolith \
     VERSION=0.1 \
     GOMAXPROCS=2 \
     GOROOT=/usr/lib/go \
     GOPATH=/opt/src \
     GOBIN=/gopath/bin
-ENV PATH=$PATH:$WEB_HOME
+ENV PATH=$PATH:$SERVICE_HOME
 
 # Add service files
 ADD root /
 
-RUN apk add --update go git \ 
-  && mkdir -p /opt/src $WEB_HOME; cd /opt/src \
+RUN apk add --update go git musl-dev \ 
+  && mkdir -p /opt/src ${SERVICE_HOME}; cd /opt/src \
   && cd /opt/src \
-  && CGO_ENABLED=0 go build -v -installsuffix cgo -ldflags '-extld ld -extldflags -static' -a -x web-monolith.go \
-  && mv ./web-monolith ${WEB_HOME}; cd ${WEB_HOME} \
-  && chmod +x ${WEB_HOME}/web-monolith \
-  && apk del go git \
+  && go build -o ${SERVICE_NAME} \
+  && mv ./${SERVICE_NAME} ${SERVICE_HOME}; cd ${SERVICE_HOME} \
+  && chmod +x ${SERVICE_HOME}/${SERVICE_NAME} \
+  && apk del go git musl-dev \
   && rm -rf /var/cache/apk/* /opt/src 
 
 EXPOSE 8080
+
+WORKDIR ${SERVICE_HOME}
 
 ENTRYPOINT ["/opt/web-monolith/web-monolith"]
