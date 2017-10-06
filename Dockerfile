@@ -17,11 +17,11 @@ RUN apk add --update go git \
   && mkdir -p /opt/src $WEB_HOME; cd /opt/src \
   && cd /opt/src \
   && CGO_ENABLED=0 go build -v -installsuffix cgo -ldflags '-extld ld -extldflags -static' -a -x web-monolith.go \
-  && mv ./web-test ${WEB_HOME}; cd ${WEB_HOME} \
+  && mv ./web-monolith ${WEB_HOME}; cd ${WEB_HOME} \
   && chmod +x ${WEB_HOME}/web-monolith \
   && apk del go git \
   && rm -rf /var/cache/apk/* /opt/src 
 
 EXPOSE 8080
 
-ENTRYPOINT ["/opt/web-test/web-monolith"]
+ENTRYPOINT ["/opt/web-monolith/web-monolith"]
