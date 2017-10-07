@@ -11,7 +11,7 @@ docker build -t rawmind/web-monolith:<version> .
 
 ## Versions
 
-- `0.1-2` [(Dockerfile)](https://github.com/rawmind0/web-monolit/blob/0.1-2/Dockerfile)
+- `0.1-3` [(Dockerfile)](https://github.com/rawmind0/web-monolit/blob/0.1-3/Dockerfile)
 
 
 ## Usage
