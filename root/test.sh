@@ -17,10 +17,10 @@ SERVICE_PID=$!
 sleep 5
 
 echo "Testing service ${SERVICE_NAME}"
-CURRENT_VERSION=$(curl localhost:8080)
+CURRENT_VERSION=$(curl -sS localhost:8080)
 if [ $? -ne 0 ]; then
 	sleep 5
-	CURRENT_VERSION=$(curl localhost:8080)
+	CURRENT_VERSION=$(curl -sS localhost:8080)
 fi
 
 SERVICE_EXPECTED="Web-monolith version ${SERVICE_VERSION}"
@@ -33,4 +33,4 @@ fi
 echo "OK"
 echo "Stoping service ${SERVICE_NAME}"
 kill -15 $SERVICE_PID
-exit rc
+exit $rc
