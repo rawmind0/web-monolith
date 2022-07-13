@@ -9,7 +9,7 @@ fi
 DOCKER_FILE=${DOCKER_FILE:-"Dockerfile"}
 DOCKER_FROM=${DOCKER_FROM:-"rawmind/alpine-base:3.15-5"}
 VERSION=${VERSION:-$(cat version)}
-GO_SOURCE="github.com/rawmind0/web-inventory"
+GO_SOURCE="github.com/rawmind0/web-monolith"
 
 if [ -z "${TAG}" ]; then
   REVISION=$(getRev ${VERSION})
