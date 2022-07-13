@@ -18,7 +18,7 @@ if [ "$list_image" == "" ]; then
 fi
 
 log "Running ${DOCKER_IMAGE} ..."
-docker run -t --rm --entrypoint=/test.sh ${DOCKER_IMAGE}
+docker run -t --rm --entrypoint=/tmp/test.sh ${DOCKER_IMAGE}
 checkError $?
 
 log "OK"
